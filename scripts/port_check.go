@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 	"time"
 
 	log "github.com/sirupsen/logrus"
@@ -82,6 +83,3 @@ func main() {
 		os.Exit(1)
 	}
 }
-
-// Import strings package functionality
-import "strings"

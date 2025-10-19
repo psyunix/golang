@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	log "github.com/sirupsen/logrus"
@@ -71,9 +72,9 @@ func main() {
 	}
 
 	// Print service status
-	fmt.Println("\n" + "=".repeat(60))
+	fmt.Println("\n" + strings.Repeat("=", 60))
 	fmt.Println("SERVICE STATUS REPORT")
-	fmt.Println("=".repeat(60))
+	fmt.Println(strings.Repeat("=", 60))
 	fmt.Printf("Timestamp: %s\n\n", time.Now().Format(time.RFC1123))
 
 	for _, service := range services {
@@ -90,7 +91,7 @@ func main() {
 		)
 	}
 
-	fmt.Println("=".repeat(60))
+	fmt.Println(strings.Repeat("=", 60))
 	fmt.Printf("\nTotal Services: %d\n", len(services))
 	
 	// Count running services
@@ -102,21 +103,4 @@ func main() {
 	}
 	
 	fmt.Printf("Running: %d | Not Running: %d\n", runningCount, len(services)-runningCount)
-}
-
-// Helper function to repeat strings
-func repeat(s string, count int) string {
-	result := ""
-	for i := 0; i < count; i++ {
-		result += s
-	}
-	return result
-}
-
-func init() {
-	// Make string repeat available
-	type stringHelper string
-	
-	var sh stringHelper
-	_ = sh
 }
