@@ -57,10 +57,14 @@ docker-stop: ## Stop Docker container
 k8s-deploy: ## Deploy to Kubernetes
 	@echo "Deploying to Kubernetes..."
 	kubectl apply -f k8s/namespace.yaml
+	@echo "Waiting for namespace to be ready..."
+	@sleep 5
 	kubectl apply -f k8s/configmap.yaml
+	@sleep 2
 	kubectl apply -f k8s/deployment.yaml
 	@echo "Waiting for deployment to be ready..."
 	kubectl wait --for=condition=available --timeout=300s deployment/golang-api -n golang-app
+	@echo "Deployment complete! Access at http://localhost:30080"
 
 k8s-delete: ## Delete from Kubernetes
 	@echo "Deleting from Kubernetes..."
